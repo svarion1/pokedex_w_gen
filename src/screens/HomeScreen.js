@@ -69,12 +69,6 @@ const HomeScreen = ({route, navigation}) => {
     }
     
 
-
-
-    
-  
-
-
     useEffect(() => {
         getPokemon(limit, offset).then((data) => {
             setPokemon(data.results);
@@ -105,9 +99,13 @@ const HomeScreen = ({route, navigation}) => {
                             renderItem={({item}) => (
                                 <GenButton
                                     onPress={() => {
-                                        
-                                        
+                                        //change gen
+                                        setGen(item);
+                                        //change limit
+                                        const gen = GenSelector({gen: item});
 
+                                        setLimit(gen.limit);
+                                        setOffset(gen.offset);
                                     }}
                                     gen={item}
                                 />
