@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { Button } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import PokeDetail from '../screens/PokeDetail';
+import WelcomeScreen from '../screens/WelcomScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -13,6 +14,13 @@ export const PokeStack = ({route}) => {
 
     return (
         <Stack.Navigator screenOptions={{headerShown:false}}>
+            <Stack.Screen
+                name="Welcome"
+                component={WelcomeScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
             <Stack.Screen 
                 name="Home" 
                 component={HomeScreen} 

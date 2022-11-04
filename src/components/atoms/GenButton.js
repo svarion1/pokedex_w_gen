@@ -5,7 +5,7 @@ const GenButton = ({gen, onPress}) => {
     return (
        <TouchableOpacity style={styles.GenButton} onPress={onPress}>
               <Text style={styles.textNumber}>{gen}</Text>
-        </TouchableOpacity>
+       </TouchableOpacity>
     )
 }
 
@@ -13,16 +13,17 @@ export default GenButton;
 
 const styles = StyleSheet.create({
     GenButton: {
-        backgroundColor: "#a3d56660",
-        width: 30,
-        height: 30,
+        backgroundColor: "white",
+        height: 40,
         borderRadius: 45,
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 8,
     },
     textNumber: {
-        fontSize: 20,
+        fontSize: 15,
         color: "black",
+        fontWeight: "bold",
+        padding: 10,
     }
 })
