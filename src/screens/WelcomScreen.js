@@ -97,14 +97,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     text: {
-        color: "white",
-        fontSize: 30,
+        color: "black",
+        fontSize: 40,
         fontWeight: "bold",
         textShadowColor: "#000",
         textShadowOffset: {width: 1, height: 1},
     },
     search: {
-        color: "white",
+        color: "black",
         fontSize: 20,
         fontWeight: "bold",
         textShadowColor: "#000",
