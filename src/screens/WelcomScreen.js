@@ -21,6 +21,8 @@ const WelcomeScreen = ({route, navigation}) => {
     const [news, setNews] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
 
+    const [newsNumber, setNewsNumber] = React.useState(5);
+
     useEffect(() => {
         getNews().then((data) => {
             setNews(data.articles);
@@ -41,7 +43,6 @@ const WelcomeScreen = ({route, navigation}) => {
         return (
              <>
              <SafeAreaView style={styles.container}>
-                 <ScrollView style={styles.scrollView}>
                         <ImageBackground source={header} style={styles.image}>
                             <Text style={styles.text}>Welcome to the Pokedex!</Text>
                             <Text style={styles.search}>Search Pokemon, Moves, Abilities...</Text>
@@ -57,22 +58,23 @@ const WelcomeScreen = ({route, navigation}) => {
                             </View>
                             <View style={styles.row}>
                                 <CardButton text="Locations" value="#9F5BBA" onPress={() => console.log("locations")}/>
-                                <CardButton text="Type Charts" value="#CA8179" onPress={() => console.log("types")}/>
+                                <CardButton text="Type Charts" value="#CA8179" onPress={() => navigation.navigate("TypesScreen", )}/>
                             </View>
                         </View>
-                       <View style={{flex:1, flexDirection:"row", justifyContent:"space-between", marginEnd:10 }}>
+                       <View style={{flex:0.2 , flexDirection:"row", justifyContent:"space-between", marginEnd:10 }}>
                             <Text style={styles.news}>News</Text>
-                            <GenButton gen={"See All"} onPress={() => console.log("see all")}/>
+                            <View style={{ alignItems:"center", justifyContent:"center"}}>
+                                <GenButton gen={"See All"} onPress={() => navigation.navigate("NewsDetail", {news: news})}/>
+                            </View>
                         </View>   
                         <View style={styles.newsContainer}>
                             <FlatList 
-                                data={news.slice(0, 15)}
+                                data={news.slice(0, newsNumber)}
                                 renderItem={({item}) => <NewsCard title={item.title} date={DATE} image={item.urlToImage} />}
                                 keyExtractor={(item) => item.title}
                                 
                             />
                         </View>
-                 </ScrollView>
              </SafeAreaView>
              </>
         );
@@ -92,9 +94,11 @@ const styles = StyleSheet.create({
     },
     image: {
         width: "100%",
-        height: 200,
+        height: 150,
         justifyContent: "center",
         alignItems: "center",
+         
+        
     },
     text: {
         color: "black",
@@ -111,9 +115,9 @@ const styles = StyleSheet.create({
         textShadowOffset: {width: 1, height: 1},
     },
     buttonContainer: {
-        flex: 1,
+        flex: 0.5,
         justifyContent: "center",
-        alignItems: "center",
+        
     },
     newsContainer: {
         flex: 1,
@@ -136,17 +140,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginBottom: 20,
     },
-    seeAllButton: {
-        color: "white",
-        height: 20,
-        fontSize: 20,
-        fontWeight: "bold",
-        textShadowColor: "#000",
-        textShadowOffset: {width: 1, height: 1},
-        marginTop: 20,
-        marginLeft: 20,
-        marginBottom: 20,
-    },
+    
 
 
 

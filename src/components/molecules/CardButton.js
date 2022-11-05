@@ -18,9 +18,9 @@ export default CardButton;
 const styles = StyleSheet.create({
 
     CardButton: {
-        flex: 1,
+        width: "58%",
         borderRadius: 20,
-        margin: 5,
+        marginLeft: 5,
         padding: 10,
         marginBottom: 15,
         flexDirection: "row",

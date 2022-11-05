@@ -4,7 +4,9 @@ import { Button } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import PokeDetail from '../screens/PokeDetail';
 import WelcomeScreen from '../screens/WelcomScreen';
-
+import NewsDetail from '../screens/NewsDetail';
+import TypesScreen from '../screens/TypesScreen';
+import TypeDetail from '../screens/TypeDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +24,13 @@ export const PokeStack = ({route}) => {
                 }}
             />
             <Stack.Screen 
+                name="NewsDetail"
+                component={NewsDetail}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen 
                 name="Home" 
                 component={HomeScreen} 
                 
@@ -32,6 +41,20 @@ export const PokeStack = ({route}) => {
                 options={{headerShown: true, headerRight: () => <Button title="Shiny" onPress={() => console.log("shiny")}/>}}
 
             />
+            <Stack.Screen
+                name="TypesScreen"
+                component={TypesScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="TypeDetail"
+                component={TypeDetail}
+                options={{
+                    headerShown: false,
+                }}
+            />
         </Stack.Navigator>
     );
-    };
+};

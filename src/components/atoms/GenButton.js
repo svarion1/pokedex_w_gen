@@ -13,8 +13,7 @@ export default GenButton;
 
 const styles = StyleSheet.create({
     GenButton: {
-        backgroundColor: "white",
-        height: 40,
+        backgroundColor: "#104888",
         borderRadius: 45,
         alignItems: 'center',
         justifyContent: 'center',
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
     },
     textNumber: {
         fontSize: 15,
-        color: "black",
+        color: "white",
         fontWeight: "bold",
         padding: 10,
     }
