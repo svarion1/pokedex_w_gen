@@ -7,6 +7,8 @@ import WelcomeScreen from '../screens/WelcomScreen';
 import NewsDetail from '../screens/NewsDetail';
 import TypesScreen from '../screens/TypesScreen';
 import TypeDetail from '../screens/TypeDetail';
+import MovesScreen from '../screens/MovesScreen';
+import MoveDetail from '../screens/MoveDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +57,21 @@ export const PokeStack = ({route}) => {
                     headerShown: false,
                 }}
             />
+            <Stack.Screen
+                name="MovesScreen"
+                component={MovesScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="MoveDetail"
+                component={MoveDetail}
+                options={{
+                    headerShown: false,
+                }}
+            />
         </Stack.Navigator>
-    );
-};
+    )
+}
+     
