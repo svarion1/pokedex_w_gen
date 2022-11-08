@@ -1,26 +1,31 @@
-import { Image, StyleSheet, Text, View,  } from 'react-native'
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,  } from 'react-native'
 import React, { useEffect, useCallback, useMemo } from 'react'
-import Tag from '../atoms/Tag'
 
-const PokeCard = ({number}) => {
+
+const PokeCard = ({number, name}) => {
+    
+    number = number.toString().padStart(3, '0')
+    const url = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${number}.png`
+
+
+    console.log(number)
 
     return (
-      <View style={{...styles.card, backgroundColor: "#ffffff"}}>
-        <View>
-  
-          <Text style={styles.subtitle}>#{number}</Text>
-          <Text style={styles.title}>{number}</Text>
-          <View style={styles.row}>
-             <Tag type="bug"/>
-              <Tag type="grass"/>
-          </View>
-  
-        </View>
-        <View style={styles.imageContainer}>
-          <Image source={{uri:`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${number}.png`}} style={styles.image}/>
-        </View>
-      </View>
+        <TouchableOpacity style={styles.container}>
+                <Text style={styles.text}>{name}</Text>
+                
+        
+        </TouchableOpacity>
     )
   }
   
-  export default Card
+
+  export default PokeCard
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+
+
+})

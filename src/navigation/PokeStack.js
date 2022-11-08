@@ -9,6 +9,8 @@ import TypesScreen from '../screens/TypesScreen';
 import TypeDetail from '../screens/TypeDetail';
 import MovesScreen from '../screens/MovesScreen';
 import MoveDetail from '../screens/MoveDetail';
+import GenerationScreen from '../screens/GenerationScreen';
+import GenerationDetail from '../screens/GenerationDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +45,21 @@ export const PokeStack = ({route}) => {
                 options={{headerShown: true, headerRight: () => <Button title="Shiny" onPress={() => console.log("shiny")}/>}}
 
             />
+            <Stack.Screen
+                name="GenerationScreen"
+                component={GenerationScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="GenerationDetail"
+                component={GenerationDetail}
+                options={{
+                    headerShown: false,
+                }}
+            />
+
             <Stack.Screen
                 name="TypesScreen"
                 component={TypesScreen}

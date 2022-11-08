@@ -49,7 +49,7 @@ const WelcomeScreen = ({route, navigation}) => {
                         </ImageBackground>
                         <View style={styles.buttonContainer}>
                             <View style={styles.row}>
-                                <CardButton text="Pokedex" value="#2CDAB1" onPress={() => navigation.navigate('Home')} />
+                                <CardButton text="Pokedex" value="#2CDAB1" onPress={() => navigation.navigate('GenerationScreen')} />
                                 <CardButton text="Moves" value="#F7786B" onPress={() => navigation.navigate("MovesScreen")}/>
                             </View>
                             <View style={styles.row}>
