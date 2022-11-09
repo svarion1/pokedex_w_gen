@@ -1,20 +1,22 @@
-import { Image, StyleSheet, Text, View,  } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View, Linking  } from 'react-native'
 import React, { useEffect, useCallback, useMemo } from 'react'
 
 const url = "https://cdn.pocket-lint.com/r/s/1201x/assets/images/160207-games-news-feature-pokemon-scarlet-and-pokemon-violet-everything-we-know-about-the-next-pokemon-games-image7-dywuaxdgrf.jpg"
 
 
-const NewsCard = ({title, date, image}) => {
+const NewsCard = ({title, date, image, link}) => {
 
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity onPress={()=>Linking.openURL(link)}>
+            <View style={styles.container}>
             <View style={styles.textContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.date}>{date}</Text>
             </View>
             <Image source={{uri: `${image}`}} style={styles.image}/>
         </View>
+        </TouchableOpacity>
     )
 }
 

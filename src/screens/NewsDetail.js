@@ -17,7 +17,7 @@ const NewsDetail = ({route}) => {
             <View style={styles.container}>
                 <FlatList 
                     data={news.slice(5, news.length)}
-                    renderItem={({item}) => <NewsCard title={item.title} date={DATE} image={item.urlToImage} />}
+                    renderItem={({item}) => <NewsCard title={item.title} date={DATE} image={item.urlToImage} link={item.url} />}
                     
                         
                 />

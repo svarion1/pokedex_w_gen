@@ -39,7 +39,7 @@ const WelcomeScreen = ({route, navigation}) => {
             </View>
         )
     } else {
-
+        
         return (
              <>
              <SafeAreaView style={styles.container}>
@@ -64,13 +64,13 @@ const WelcomeScreen = ({route, navigation}) => {
                        <View style={{flex:0.2 , flexDirection:"row", justifyContent:"space-between", marginEnd:10 }}>
                             <Text style={styles.news}>News</Text>
                             <View style={{ alignItems:"center", justifyContent:"center"}}>
-                                <GenButton gen={"See All"} onPress={() => navigation.navigate("NewsDetail", {news: news})}/>
+                                <Button title={"See All"} onPress={() => navigation.navigate("NewsDetail", {news: news})}/>
                             </View>
                         </View>   
                         <View style={styles.newsContainer}>
                             <FlatList 
                                 data={news.slice(0, newsNumber)}
-                                renderItem={({item}) => <NewsCard title={item.title} date={DATE} image={item.urlToImage} />}
+                                renderItem={({item}) => <NewsCard title={item.title} date={DATE} image={item.urlToImage} link={item.url} />}
                                 keyExtractor={(item) => item.title}
                                 
                             />

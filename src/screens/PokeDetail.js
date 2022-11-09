@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import NumConverter from "../utils/NumConverter";
 
@@ -6,48 +6,44 @@ import NumConverter from "../utils/NumConverter";
 
 
 const PokeDetail = ({route}) => {
-  const {name, url} = route.params;
+  const {data, image} = route.params;
  
-  const getDetail = async (url) => {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  }
-
   const [id, setId] = React.useState(0);
-  const [sprite, setSprite] = React.useState("");
+  const [frontSprite, setFrontSprite] = React.useState([]);
+  const [rearSprite, setRearSprite] = React.useState("");
   const [type, setType] = React.useState([]);
   const [height, setHeight] = React.useState(0);
   const [weight, setWeight] = React.useState(0);
 
+  console.log(data.pokemon.sprites)
+    
 
-  const number = url.split('/')[url.split('/').length - 2];
-  const num = NumConverter({number});
-  const image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${num}.png`;
+useEffect(() => {
+    setId(data.pokemon.id);
+    setFrontSprite(data.pokemon.sprites.front_default);
+    setRearSprite(data.pokemon.sprites.back_default);
+    setType(data.pokemon.types);
+    setHeight(data.pokemon.height);
+    setWeight(data.pokemon.weight);
+}, [])
 
-
-  getDetail(url).then((data) => {
-    setSprite(data.sprites.front_default);
-    setType(data.types);
-    setHeight(data.height);
-    setWeight(data.weight);
-  });
+console.log(image.imageUrl)
 
   return (
       <>
         <View style={styles.header}>
-            <Text style={{fontSize:32, color: "black", textTransform: "capitalize"}}>{name}</Text>
-            <Text style={{fontSize:25, color: "black", paddingHorizontal: 15}}>#{num}</Text>
+            <Text style={{fontSize:32, color: "black", textTransform: "capitalize"}}>{data.pokemon.name}</Text>
+            <Text style={{fontSize:25, color: "black", paddingHorizontal: 15}}>#{id}</Text>
         </View>
 
         <View style={styles.container}>
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{uri: image}}/>
+                <Image style={styles.image} source={{uri:`${image.imageUrl}` }}/>
             </View>
             <View style={styles.spriteContainer}>
-                <Image style={styles.sprite} source={{uri: image}}/>
-                <Image style={styles.sprite} source={{uri: image}}/>
-                <Image style={styles.sprite} source={{uri: image}}/>
+                <Image style={styles.sprite} source={{uri: `${frontSprite}`}}/>
+                <Image style={styles.sprite} source={{uri: `${rearSprite}`}}/>
+                <Image style={styles.sprite} source={{uri: `${image}`}}/>
             </View>
 
             <View style={styles.infoContainer}>

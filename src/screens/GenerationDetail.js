@@ -6,7 +6,7 @@ import CardButton from '../components/molecules/CardButton';
 import PokeCard from '../components/organisms/PokeCard';
 
 
-const GenerationDetail = ({route}) => {
+const GenerationDetail = ({route, navigation}) => {
 
   const {data} = route.params;
 
@@ -23,7 +23,8 @@ const GenerationDetail = ({route}) => {
         
         <FlatList
             data={data}
-            renderItem= {({item}) => <PokeCard number={item.url.split('/')[6]} name={item.name} />}
+            renderItem= {({item}) => <PokeCard number={item.url.split('/')[6]} name={item.name} url={item.url} navigation={navigation}/>}
+            style={{width: "99%"}}
         />
         </View>
     

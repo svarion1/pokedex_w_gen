@@ -20,15 +20,7 @@ const HomeScreen = ({route, navigation}) => {
     const [limit, setLimit] = React.useState(151);
     const [offset, setOffset] = React.useState(0);
     const [loading, setLoading] = React.useState(true);
-    const [firstGen, setFirstGen] = React.useState([]);
-    const [secondGen, setSecondGen] = React.useState([]);
-    const [thirdGen, setThirdGen] = React.useState([]);
-    const [fourthGen, setFourthGen] = React.useState([]);
-    const [fifthGen, setFifthGen] = React.useState([]);
-    const [sixthGen, setSixthGen] = React.useState([]);
-    const [seventhGen, setSeventhGen] = React.useState([]);
-    const [eighthGen, setEighthGen] = React.useState([]);
-
+ 
 
    for (let i = 0; i < 8; i++) {
          const gen = GenSelector({gen: i + 1});

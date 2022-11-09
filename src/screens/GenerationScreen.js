@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, Text, SafeAreaView } from 'react-native'
 import { backgroundColors } from '../theme/colors'
-
+import GenButton from '../components/atoms/GenButton'
 const getPokemon = async (limit, offset) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
     const data = await response.json();
@@ -12,6 +12,11 @@ const GenerationScreen = ({route, navigation}) => {
     const [firstGen, setFirstGen] = React.useState({});
     const [secondGen, setSecondGen] = React.useState({});
     const [thirdGen, setThirdGen] = React.useState({});
+    const [fourthGen, setFourthGen] = React.useState([]);
+    const [fifthGen, setFifthGen] = React.useState([]);
+    const [sixthGen, setSixthGen] = React.useState([]);
+    const [seventhGen, setSeventhGen] = React.useState([]);
+    const [eighthGen, setEighthGen] = React.useState([]);
 
     useEffect(() => {
         getPokemon(151, 0).then((data) => {
@@ -25,54 +30,49 @@ const GenerationScreen = ({route, navigation}) => {
             setThirdGen(data.results);
         }
         );
+        getPokemon(107, 386).then((data) => {
+            setFourthGen(data.results);
+        }
+        );
+        getPokemon(156, 493).then((data) => {
+            setFifthGen(data.results);
+        }
+        );
+        getPokemon(72, 649).then((data) => {
+            setSixthGen(data.results);
+        }
+        );
+        getPokemon(88, 721).then((data) => {
+            setSeventhGen(data.results);
+        }
+        );
+        getPokemon(89, 809).then((data) => {
+            setEighthGen(data.results);
+        }
+        );
     }, []);
 
-    console.log(firstGen);
 
     return (
-        <>
+        <SafeAreaView style={{flex:1}}>
         <View style={styles.container}>
-            <Text>Generations Screen</Text>
+            <Text style={styles.title}>Choose a generation!</Text>
         </View>
-        <View   style={{flex:1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
-        <View style={styles.column}>
-            <TouchableOpacity style={[styles.button, {backgroundColor: "#2bbb5a"}]} onPress={() => navigation.navigate("GenerationDetail", {generation: 1, data:firstGen})}>
-                <Text style={styles.text}>I</Text>
-                <Text style={styles.text}>First Gen</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, {backgroundColor: "#55c463"}]} onPress={() => navigation.navigate("GenerationDetail", {generation: 3 , data:thirdGen})}>
-                <Text style={styles.text}>III</Text>
-                <Text style={styles.text}>Third Gen</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, {backgroundColor: "#73ce6e"}]} onPress={() => navigation.navigate("GenerationDetail", {generation: 5, })}>
-                <Text style={styles.text}>V</Text>
-                <Text style={styles.text}>Fifth Gen</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, {backgroundColor: "#8cd77a"}]} onPress={() => navigation.navigate("GenerationDetail", {generation: 7})}>
-                <Text style={styles.text}>VII</Text>
-                <Text style={styles.text}>Seventh Gen</Text>
-            </TouchableOpacity>
+        <View style={{flex:1, flexDirection: 'row', justifyContent: 'center', alignItems:"center"}}>
+            <View style={styles.column}>
+                <GenButton color={"#2bbb5a"} index={"I"} data={firstGen} gen={"First"} navigation={navigation}/>
+                <GenButton color={"#55c463"} index={"III"} data={thirdGen} gen={"Third"} navigation={navigation}/>
+                <GenButton color={"#73ce6e"} index={"V"} data={fifthGen} gen={"Fifth"} navigation={navigation}/>
+                <GenButton color={"#8cd77a"} index={"VII"} data={seventhGen} gen={"Seventh"} navigation={navigation}/>
+            </View>
+            <View style={styles.column}>
+                <GenButton color={"#a4e086"} index={"II"} data={secondGen} gen={"Second"} navigation={navigation}/>
+                <GenButton color={"#b9e994"} index={"IV"} data={fourthGen} gen={"Fourth"} navigation={navigation}/>
+                <GenButton color={"#cef3a3"} index={"VI"} data={sixthGen} gen={"Sixth"} navigation={navigation}/>
+                <GenButton color={"#e1fcb3"} index={"VIII"} data={eighthGen} gen={"Eighth"} navigation={navigation}/>
+            </View>
         </View>
-        <View style={styles.column}>
-            <TouchableOpacity style={[styles.button, {backgroundColor: "#a4e086"}]} onPress={() => navigation.navigate("GenerationDetail", {generation: 2, data: secondGen})}>
-                <Text style={styles.text}>II</Text>
-                <Text style={styles.text}>Second Gen</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, {backgroundColor: "#b9e994"}]} onPress={() => navigation.navigate("GenerationDetail", {generation: 4})}>
-                <Text style={styles.text}>IV</Text>
-                <Text style={styles.text}>Fourth Gen</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, {backgroundColor: "#cef3a3"}]} onPress={() => navigation.navigate("GenerationDetail", {generation: 6})}>
-                <Text style={styles.text}>VI</Text>
-                <Text style={styles.text}>Sixth Gen</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, {backgroundColor: "#e1fcb3"}]} onPress={() => navigation.navigate("GenerationDetail", {generation: 8})}>
-                <Text style={styles.text}>VIII</Text>
-                <Text style={styles.text}>Eighth Gen</Text>
-            </TouchableOpacity>
-        </View>
-        </View>
-    </>
+    </SafeAreaView>
     )
 }
 
@@ -80,34 +80,28 @@ export default GenerationScreen
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        padding: 20,
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
     },
     column: {
         flex: 1,
+        height: "80%",
+        marginHorizontal: 10,
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
+      
+    
     },
-    button: {
-        width: 100,
-
-        height: 100,
-        margin: 10,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        }
-    },
+  
     text: {
         fontSize: 20,
+        fontWeight: "bold",
+    },
+    title: {
+        fontSize: 30,
         fontWeight: "bold",
     },
 });
