@@ -12,7 +12,7 @@ const NewsDetail = ({route}) => {
     return (
         <>
             <View style={styles.header}>
-                <Text style={{fontSize:32, color: "black", textTransform: "capitalize"}}>All News from Today</Text>
+                <Text style={{fontFamily:"Alexandria-Regular",fontSize:32, color: "black", textTransform: "capitalize"}}>All News from Today</Text>
             </View>
             <View style={styles.container}>
                 <FlatList 

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: 22,
-        fontWeight: "bold",
+       fontFamily: "Alexandria-SemiBold",
         color: "#ffffff",
     },
     image: {

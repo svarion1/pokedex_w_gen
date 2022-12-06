@@ -10,10 +10,6 @@ const GenerationDetail = ({route, navigation}) => {
 
   const {data} = route.params;
 
-  data.map((item) => {
-      console.log(item.url.split('/')[6])
-  })
-
   
    
   return (
@@ -25,6 +21,7 @@ const GenerationDetail = ({route, navigation}) => {
             data={data}
             renderItem= {({item}) => <PokeCard number={item.url.split('/')[6]} name={item.name} url={item.url} navigation={navigation}/>}
             style={{width: "99%"}}
+            keyExtractor={item => item.name}
         />
         </View>
     

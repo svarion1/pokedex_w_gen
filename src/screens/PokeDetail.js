@@ -1,22 +1,21 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import NumConverter from "../utils/NumConverter";
-
+import RadarChart from '../components/organisms/RadarChart.js';
+import  Color  from "react-native-charts-wrapper";
 
 
 
 const PokeDetail = ({route}) => {
   const {data, image} = route.params;
- 
   const [id, setId] = React.useState(0);
   const [frontSprite, setFrontSprite] = React.useState([]);
   const [rearSprite, setRearSprite] = React.useState("");
   const [type, setType] = React.useState([]);
   const [height, setHeight] = React.useState(0);
   const [weight, setWeight] = React.useState(0);
+  const [stats, setStats] = React.useState([]);
 
-  console.log(data.pokemon.sprites)
-    
 
 useEffect(() => {
     setId(data.pokemon.id);
@@ -25,9 +24,13 @@ useEffect(() => {
     setType(data.pokemon.types);
     setHeight(data.pokemon.height);
     setWeight(data.pokemon.weight);
+    setStats(data.pokemon.stats);
 }, [])
 
-console.log(image.imageUrl)
+
+ 
+
+
 
   return (
       <>
@@ -43,14 +46,26 @@ console.log(image.imageUrl)
             <View style={styles.spriteContainer}>
                 <Image style={styles.sprite} source={{uri: `${frontSprite}`}}/>
                 <Image style={styles.sprite} source={{uri: `${rearSprite}`}}/>
-                <Image style={styles.sprite} source={{uri: `${image}`}}/>
             </View>
 
             <View style={styles.infoContainer}>
-                <Text style={styles.info}>Height: {height}</Text>
-                <Text style={styles.info}>Weight: {weight}</Text>
+                <View style={{flexDirection:"row" }}>
+                    <Text style={styles.info}>Height: {height}</Text>
+                    <Text style={styles.info}>Weight: {weight}</Text>
+                </View>
                 <Text style={styles.info}>Abilities: </Text>
-              </View>
+                <View style={{flexDirection:"row" }}>
+                    {data.pokemon.abilities.map((ability, index) => {
+                        return (
+                            <Text key={index} style={styles.info}>{ability.ability.name}</Text>
+                        )
+                    })}
+                </View>
+
+                <View>
+                    <RadarChart stats={stats}/>
+                </View>
+            </View>
         </View>
 
       </>
@@ -68,7 +83,7 @@ console.log(image.imageUrl)
         },
         header: {
             backgroundColor: "#a55",
-            flex: 0.2,
+            padding: 10,
             flexDirection: "row",
             alignItems: 'center',
             justifyContent: 'center',
@@ -96,7 +111,7 @@ console.log(image.imageUrl)
             fontSize: 20,
             color: "black",
             textTransform: "capitalize",
-
+            marginHorizontal: 10,
         },
         spriteContainer: {
             flex: 0.1,

@@ -11,7 +11,7 @@ const AppNavigation = () => {
     const [fontsLoaded] = useFonts({
         'sf-pro-display-regular': require('./src/assets/fonts/sf-pro-display-regular.ttf'),
     });
-    console.warn(fontsLoaded);
+  
     const test = React.useEffect(() => {
         setTimeout(() => {
             setIsLoaded(true);

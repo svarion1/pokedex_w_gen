@@ -44,12 +44,13 @@ const styles = StyleSheet.create({
         width: "70%",
     },
     title: {
-        fontSize: 20,
-        fontWeight: "bold",
+        fontSize: 18,
+        fontFamily: "Alexandria-SemiBold",
     },
     date: {
         fontSize: 15,
         color: "#a5a5a5",
+        fontFamily: "Alexandria-Light",
     },
     image: {
         width: 100,
