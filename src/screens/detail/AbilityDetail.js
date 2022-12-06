@@ -16,15 +16,19 @@ const AbilityDetail = ({ route }) => {
         const data = await response.json();
         return data;
     };
+
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>{route.params.ability}</Text>
-            </View>
-            <View style={styles.body}>
-                <Text style={styles.text}>{abilityDetail.effect_entries?.[1].effect}</Text>
-            </View>
+                <View style={styles.header}>
+                    <Text style={styles.title}>{route.params.ability}</Text>
+                </View>
+                <View style={styles.body}>
+                    <View style={{ backgroundColor: "#f19999", padding: 15, borderRadius:25}}>
+                        <Text style={styles.text}>{abilityDetail.effect_entries?.[1].effect}</Text>
+                    </View>
+                </View>
         </View>
         </SafeAreaView>
     )

@@ -57,7 +57,7 @@ const WelcomeScreen = ({ route, navigation }) => {
                 <View style={styles.headContainer}>
                     <ImageBackground style={styles.imageContainer} source={header}>
                         <Text style={styles.titleText}>Welcome to the Pokedex!</Text>
-                        <Text style={styles.search}>Search Pokemon, Moves, Abilities...</Text>
+                        <Text style={styles.search}>Discover Pokemon, Moves, Abilities...</Text>
                     </ImageBackground>
 
                     <View style={styles.buttonContainer}>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         flex: 0.8,
         backgroundColor: "#fff",
         alignItems: "center",
-        borderWidth: 1,
+       
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,
     },
