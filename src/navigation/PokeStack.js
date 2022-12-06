@@ -1,5 +1,5 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Button } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import PokeDetail from '../screens/PokeDetail';
@@ -11,15 +11,19 @@ import MovesScreen from '../screens/MovesScreen';
 import MoveDetail from '../screens/MoveDetail';
 import GenerationScreen from '../screens/GenerationScreen';
 import GenerationDetail from '../screens/GenerationDetail';
+import AbilitiesScreen from '../screens/AbilitiesScreen';
+import AbilityDetail from '../screens/AbilityDetail';
+import ItemsScreen from '../screens/ItemsScreen';
+import LocationsScreen from '../screens/LocationsScreen';
 
 const Stack = createNativeStackNavigator();
 
-export const PokeStack = ({route}) => {
-     
-   // console.log(id)
+export const PokeStack = ({ route }) => {
+
+    // console.log(id)
 
     return (
-        <Stack.Navigator screenOptions={{headerShown:false}}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen
                 name="Welcome"
                 component={WelcomeScreen}
@@ -27,22 +31,22 @@ export const PokeStack = ({route}) => {
                     headerShown: false,
                 }}
             />
-            <Stack.Screen 
+            <Stack.Screen
                 name="NewsDetail"
                 component={NewsDetail}
                 options={{
                     headerShown: false,
                 }}
             />
-            <Stack.Screen 
-                name="Home" 
-                component={HomeScreen} 
-                
+            <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+
             />
-            <Stack.Screen 
-                name="PokeDetail" 
-                component={PokeDetail} 
-                options={{headerShown: true, headerRight: () => <Button title="Shiny" onPress={() => console.log("shiny")}/>}}
+            <Stack.Screen
+                name="PokeDetail"
+                component={PokeDetail}
+                options={{ headerShown: true, headerRight: () => <Button title="Shiny" onPress={() => console.log("shiny")} /> }}
 
             />
             <Stack.Screen
@@ -88,7 +92,35 @@ export const PokeStack = ({route}) => {
                     headerShown: false,
                 }}
             />
+            <Stack.Screen
+                name="AbilitiesScreen"
+                component={AbilitiesScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="AbilityDetail"
+                component={AbilityDetail}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="ItemsScreen"
+                component={ItemsScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="LocationsScreen"
+                component={LocationsScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+
         </Stack.Navigator>
     )
 }
-     

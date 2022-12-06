@@ -33,15 +33,15 @@ const WelcomeScreen = ({ route, navigation }) => {
 
     useEffect(() => {
         Font.loadAsync({
-          "sf-pro-display-regular": require("../assets/fonts/sf-pro-display-regular.ttf"),
-          "sf-pro-display-bold": require("../assets/fonts/sf-pro-display-bold.ttf"),
-          "Alexandria-Light": require("../assets/fonts/Alexandria-Light.ttf"),
-          "Alexandria-Regular": require("../assets/fonts/Alexandria-Regular.ttf"),
-          "Alexandria-SemiBold": require("../assets/fonts/Alexandria-SemiBold.ttf"),
-          "Alexandria-Medium": require("../assets/fonts/Alexandria-Medium.ttf"),
+            "sf-pro-display-regular": require("../assets/fonts/sf-pro-display-regular.ttf"),
+            "sf-pro-display-bold": require("../assets/fonts/sf-pro-display-bold.ttf"),
+            "Alexandria-Light": require("../assets/fonts/Alexandria-Light.ttf"),
+            "Alexandria-Regular": require("../assets/fonts/Alexandria-Regular.ttf"),
+            "Alexandria-SemiBold": require("../assets/fonts/Alexandria-SemiBold.ttf"),
+            "Alexandria-Medium": require("../assets/fonts/Alexandria-Medium.ttf"),
 
         }).then(() => setFontsLoaded(true));
-      }, []);
+    }, []);
 
 
     if (loading) {
@@ -53,42 +53,42 @@ const WelcomeScreen = ({ route, navigation }) => {
     } else {
 
         return (
-          <SafeAreaView style={styles.page}>
-            <View style={styles.headContainer}>
-                <ImageBackground style={styles.imageContainer} source={header}>
-                    <Text style={styles.titleText}>Welcome to the Pokedex!</Text>
-                    <Text style={styles.search}>Search Pokemon, Moves, Abilities...</Text>
-                </ImageBackground>
-                
-                <View style={styles.buttonContainer}>
-                    <View style={styles.row}>
-                        <CardButton text="Pokedex" value="#2CDAB1" onPress={() => navigation.navigate('GenerationScreen')} />
-                        <CardButton text="Moves" value="#F7786B" onPress={() => navigation.navigate("MovesScreen")} />
-                    </View>
-                    <View style={styles.row}>
-                        <CardButton text="Abilities" value="#58ABF6" onPress={() => console.log("abilities")} />
-                        <CardButton text="Items" value="#FFCE4B" onPress={() => console.log("items")} />
-                    </View>
-                    <View style={styles.row}>
-                        <CardButton text="Locations" value="#9F5BBA" onPress={() => console.log("locations")} />
-                        <CardButton text="Type Charts" value="#CA8179" onPress={() => navigation.navigate("TypesScreen",)} />
+            <SafeAreaView style={styles.page}>
+                <View style={styles.headContainer}>
+                    <ImageBackground style={styles.imageContainer} source={header}>
+                        <Text style={styles.titleText}>Welcome to the Pokedex!</Text>
+                        <Text style={styles.search}>Search Pokemon, Moves, Abilities...</Text>
+                    </ImageBackground>
+
+                    <View style={styles.buttonContainer}>
+                        <View style={styles.row}>
+                            <CardButton text="Pokedex" value="#2CDAB1" onPress={() => navigation.navigate('GenerationScreen')} />
+                            <CardButton text="Moves" value="#F7786B" onPress={() => navigation.navigate("MovesScreen")} />
+                        </View>
+                        <View style={styles.row}>
+                            <CardButton text="Abilities" value="#58ABF6" onPress={() => navigation.navigate("AbilitiesScreen")} />
+                            <CardButton text="Items" value="#FFCE4B" onPress={() => navigation.navigate("ItemsScreen")} />
+                        </View>
+                        <View style={styles.row}>
+                            <CardButton text="Locations" value="#9F5BBA" onPress={() => navigation.navigate("LocationsScreen")} />
+                            <CardButton text="Type Charts" value="#CA8179" onPress={() => navigation.navigate("TypesScreen",)} />
+                        </View>
                     </View>
                 </View>
-            </View>
-            <View style={styles.bottomContainer}>
-                <View style={styles.titleContainer}>
-                    <Text style={styles.title}>News</Text>
-                    <Text style={styles.seeAll} onPress={() => navigation.navigate("NewsDetail", {news: news})}>See all</Text>
+                <View style={styles.bottomContainer}>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>News</Text>
+                        <Text style={styles.seeAll} onPress={() => navigation.navigate("NewsDetail", { news: news })}>See all</Text>
+                    </View>
+                    <View style={styles.newsContainer}>
+                        <FlatList
+                            data={news.slice(0, newsNumber)}
+                            renderItem={({ item }) => <NewsCard title={item.title} date={DATE} image={item.urlToImage} link={item.url} />}
+                            keyExtractor={(item) => item.title}
+                        />
+                    </View>
                 </View>
-                <View style={styles.newsContainer}>
-                    <FlatList
-                        data={news.slice(0, newsNumber)}
-                        renderItem={({ item }) => <NewsCard title={item.title} date={DATE} image={item.urlToImage} link={item.url} />}
-                        keyExtractor={(item) => item.title}
-                    />
-                </View>
-            </View>
-          </SafeAreaView>
+            </SafeAreaView>
         );
     };
 }
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         width: "100%",
-        flex:0.2,
+        flex: 0.2,
         alignItems: "center",
     },
     titleText: {
@@ -152,13 +152,13 @@ const styles = StyleSheet.create({
         fontFamily: "Alexandria-Regular",
         textShadowColor: "#000",
         textShadowOffset: { width: 1, height: 1 },
-        
+
     },
     buttonContainer: {
         flex: 0.8,
         justifyContent: "center",
         marginTop: 5,
-        
+
     },
     newsContainer: {
         flex: 1,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     news: {
         color: "white",
         fontSize: 30,
-        fontFamily:"Alexandria-SemiBold",
+        fontFamily: "Alexandria-SemiBold",
         textShadowColor: "#000",
         textShadowOffset: { width: 1, height: 1 },
         marginTop: 20,
