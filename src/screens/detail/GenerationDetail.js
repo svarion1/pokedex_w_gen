@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text, Button, SafeAreaView } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
-import GenButton from '../components/atoms/GenButton';
-import CardButton from '../components/molecules/CardButton';
-import PokeCard from '../components/organisms/PokeCard';
+import GenButton from '../../components/atoms/GenButton';
+import CardButton from '../../components/molecules/CardButton';
+import PokeCard from '../../components/organisms/PokeCard';
 
 
 const GenerationDetail = ({route, navigation}) => {

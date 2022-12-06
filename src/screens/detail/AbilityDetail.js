@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 const AbilityDetail = ({ route }) => {
@@ -16,7 +17,8 @@ const AbilityDetail = ({ route }) => {
         return data;
     };
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.title}>{route.params.ability}</Text>
             </View>
@@ -24,6 +26,7 @@ const AbilityDetail = ({ route }) => {
                 <Text style={styles.text}>{abilityDetail.effect_entries?.[1].effect}</Text>
             </View>
         </View>
+        </SafeAreaView>
     )
 }
 
@@ -44,16 +47,20 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 30,
-        fontWeight: "bold",
         marginBottom: 20,
+        textTransform: "capitalize",
+        fontFamily: "Alexandria-SemiBold"
+       
     },
     body: {
         flex: 9,
         alignItems: "center",
         justifyContent: "center",
+        paddingHorizontal: 20,
     },
     text: {
         fontSize: 20,
         marginBottom: 20,
+        fontFamily: "Alexandria-Light"
     },
 });

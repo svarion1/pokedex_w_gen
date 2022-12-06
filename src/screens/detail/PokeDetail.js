@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import NumConverter from "../utils/NumConverter";
-import RadarChart from '../components/organisms/RadarChart.js';
+import NumConverter from "../../utils/NumConverter";
+import RadarChart from '../../components/organisms/RadarChart.js';
 import Color from "react-native-charts-wrapper";
 
 

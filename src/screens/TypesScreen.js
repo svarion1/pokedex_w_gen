@@ -4,11 +4,29 @@ import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors, backgroundColors } from "../theme/colors.js";
 import { commonStyles } from "../styles/commonStyles.js";
+import * as Font from 'expo-font';
 
 const TypesScreen = ({ navigation }) => {
+    const [fontsLoaded, setFontsLoaded] = React.useState(false);
+
+   React.useEffect(() => {
+        Font.loadAsync({
+            "sf-pro-display-regular": require("../assets/fonts/sf-pro-display-regular.ttf"),
+            "sf-pro-display-bold": require("../assets/fonts/sf-pro-display-bold.ttf"),
+            "Alexandria-Light": require("../assets/fonts/Alexandria-Light.ttf"),
+            "Alexandria-Regular": require("../assets/fonts/Alexandria-Regular.ttf"),
+            "Alexandria-SemiBold": require("../assets/fonts/Alexandria-SemiBold.ttf"),
+            "Alexandria-Medium": require("../assets/fonts/Alexandria-Medium.ttf"),
+
+            }).then(() => setFontsLoaded(true));
+    }, []);
+
+
+
+
     return (
         <SafeAreaView style={commonStyles.container}>
-            <Text style={commonStyles.titleText}>Types</Text>
+            <Text style={styles.title}>Types</Text>
             <View style={styles.row}>
                 <TouchableOpacity style={[styles.button, { backgroundColor: backgroundColors.normal }]} onPress={() => navigation.navigate("TypeDetail", { type: "normal" })}>
                     <Text style={styles.text}>Normal</Text>
@@ -95,8 +113,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 30,
-        fontWeight: "bold",
         marginBottom: 20,
+        fontFamily: "Alexandria-SemiBold"
     },
     body: {
         flex: 0.9,
@@ -126,6 +144,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
-        fontWeight: "bold",
+        
+        fontFamily: "Alexandria-Medium"
     },
 });

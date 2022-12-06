@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
-import NewsCard from "../components/organisms/NewsCard";
+import NewsCard from "../../components/organisms/NewsCard";
 
 const DATE = new Date().toISOString().slice(0, 10);
 
