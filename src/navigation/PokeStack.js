@@ -46,7 +46,7 @@ export const PokeStack = ({ route }) => {
             <Stack.Screen
                 name="PokeDetail"
                 component={PokeDetail}
-                options={{ headerShown: true, headerRight: () => <Button title="Shiny" onPress={() => console.log("shiny")} /> }}
+                options={{ headerShown: false }}
 
             />
             <Stack.Screen

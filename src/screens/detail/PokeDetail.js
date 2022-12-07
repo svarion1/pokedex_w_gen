@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import NumConverter from "../../utils/NumConverter";
 import RadarChart from '../../components/organisms/RadarChart.js';
 import Color from "react-native-charts-wrapper";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { backgroundColors } from "../../theme/colors";
 
 
 
@@ -11,7 +13,7 @@ const PokeDetail = ({ route }) => {
     const [id, setId] = React.useState(0);
     const [frontSprite, setFrontSprite] = React.useState([]);
     const [rearSprite, setRearSprite] = React.useState("");
-    const [type, setType] = React.useState([]);
+    const [mainType, setMainType] = React.useState("");
     const [height, setHeight] = React.useState(0);
     const [weight, setWeight] = React.useState(0);
     const [stats, setStats] = React.useState([]);
@@ -21,7 +23,7 @@ const PokeDetail = ({ route }) => {
         setId(data.pokemon.id);
         setFrontSprite(data.pokemon.sprites.front_default);
         setRearSprite(data.pokemon.sprites.back_default);
-        setType(data.pokemon.types);
+        setMainType(data.pokemon.types[0].type.name);
         setHeight(data.pokemon.height);
         setWeight(data.pokemon.weight);
         setStats(data.pokemon.stats);
@@ -29,42 +31,54 @@ const PokeDetail = ({ route }) => {
 
 
     return (
-        <>
-            <View style={styles.header}>
-                <Text style={{ fontSize: 32, color: "black", textTransform: "capitalize" }}>{data.pokemon.name}</Text>
-                <Text style={{ fontSize: 25, color: "black", paddingHorizontal: 15 }}>#{id}</Text>
+    <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 2, backgroundColor: backgroundColors[mainType], borderBottomLeftRadius: 25, borderBottomRightRadius: 25 }}>
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 20 }}>
+                <Text style={{ fontSize: 32, color: "black", textTransform: "capitalize", fontFamily:"Alexandria-SemiBold" }}>{data.pokemon.name}</Text>
+                <Text style={{ fontSize: 25, color: "black", paddingHorizontal: 15, fontFamily:"Alexandria-SemiBold" }}>#{id}</Text>
             </View>
+            <View style={{ flex: 2, alignItems: "center", justifyContent: "center" }}>
+                <Image style={{ width: 200, height: 200 }} source={{ uri: `${image.imageUrl}` }} />
+            </View>
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
+                <Image style={{ width: 100, height: 100 }} source={{ uri: `${frontSprite}` }} />
+                <Image style={{ width: 100, height: 100 }} source={{ uri: `${rearSprite}` }} />
+            </View>
+            
 
-            <View style={styles.container}>
-                <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={{ uri: `${image.imageUrl}` }} />
-                </View>
-                <View style={styles.spriteContainer}>
-                    <Image style={styles.sprite} source={{ uri: `${frontSprite}` }} />
-                    <Image style={styles.sprite} source={{ uri: `${rearSprite}` }} />
-                </View>
 
-                <View style={styles.infoContainer}>
-                    <View style={{ flexDirection: "row" }}>
-                        <Text style={styles.info}>Height: {height}</Text>
-                        <Text style={styles.info}>Weight: {weight}</Text>
-                    </View>
-                    <Text style={styles.info}>Abilities: </Text>
-                    <View style={{ flexDirection: "row" }}>
-                        {data.pokemon.abilities.map((ability, index) => {
+        </View>
+        <View style={{ flex: 1, backgroundColor: "#ffffff", alignItems: "center", justifyContent: "center" }}>
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
+                <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+                    <Text style={{ fontSize: 20, color: "black", fontFamily:"Alexandria-SemiBold" }}>Height</Text>
+                    <Text style={{ fontSize: 20, color: "black", fontFamily:"Alexandria-SemiBold" }}>{height / 10} m</Text>
+                </View>
+                <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+                    <Text style={{ fontSize: 20, color: "black", fontFamily:"Alexandria-SemiBold" }}>Weight</Text>
+                    <Text style={{ fontSize: 20, color: "black", fontFamily:"Alexandria-SemiBold" }}>{weight / 10} kg</Text>
+                </View>
+            </View>
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
+                <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+                    <Text style={{ fontSize: 20, color: "black", fontFamily:"Alexandria-SemiBold" }}>Abilities</Text>
+                    {data.pokemon.abilities.map((ability, index) => {
                             return (
                                 <Text key={index} style={styles.info}>{ability.ability.name}</Text>
                             )
                         })}
-                    </View>
-
-                    <View>
-                        <RadarChart stats={stats} />
-                    </View>
                 </View>
             </View>
+        </View>
 
-        </>
+        <View style={{flex:2}}>
+                <RadarChart stats={stats} />
+        </View>
+
+
+    </SafeAreaView>
+    
+        
     );
 }
 
@@ -73,9 +87,10 @@ export default PokeDetail;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#2b5",
-        flex: 1,
+        flex:1,
         alignItems: 'center',
         justifyContent: 'center',
+        
     },
     header: {
         backgroundColor: "#a55",
@@ -85,7 +100,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     imageContainer: {
-        flex: 0.4,
+       
         marginTop: "5%",
 
         borderRadius: 300,
@@ -98,7 +113,7 @@ const styles = StyleSheet.create({
         height: 250,
     },
     infoContainer: {
-        flex: 0.5,
+        flex: 3,
         alignItems: 'center',
         marginTop: "5%",
 
@@ -111,10 +126,11 @@ const styles = StyleSheet.create({
     },
     spriteContainer: {
         flex: 0.1,
-        flexDirection: "row",
-        alignItems: 'center',
+        flexDirection: "column",
+        alignItems: "flex-end",
         justifyContent: 'center',
-        marginTop: "5%",
+        padding: 10,
+       
     },
     sprite: {
         width: 100,

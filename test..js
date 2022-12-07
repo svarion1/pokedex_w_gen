@@ -36,3 +36,52 @@
     </View>
 </SafeAreaView>
 </>
+
+
+<>
+<SafeAreaView style={{flex:1}}>
+
+            
+
+
+
+            <View style={styles.header}>
+                <Text style={{ fontSize: 32, color: "black", textTransform: "capitalize", fontFamily:"Alexandria-SemiBold" }}>{data.pokemon.name}</Text>
+                <Text style={{ fontSize: 25, color: "black", paddingHorizontal: 15, fontFamily:"Alexandria-SemiBold" }}>#{id}</Text>
+            </View>
+        
+            <View style={styles.imageContainer}>
+                    <Image style={styles.image} source={{ uri: `${image.imageUrl}` }} />
+            </View>
+            <View style={styles.spriteContainer}>
+                    <Image style={styles.sprite} source={{ uri: `${frontSprite}` }} />
+                    <Image style={styles.sprite} source={{ uri: `${rearSprite}` }} />
+            </View>
+
+            <View style={styles.container}>
+                
+               
+
+                <View style={styles.infoContainer}>
+                    <View style={{ flexDirection: "row" }}>
+                        <Text style={styles.info}>Height: {height}</Text>
+                        <Text style={styles.info}>Weight: {weight}</Text>
+                    </View>
+                    <Text style={styles.info}>Abilities: </Text>
+                    <View style={{ flexDirection: "row" }}>
+                        {data.pokemon.abilities.map((ability, index) => {
+                            return (
+                                <Text key={index} style={styles.info}>{ability.ability.name}</Text>
+                            )
+                        })}
+                    </View>
+                </View>
+                
+
+            </View>
+            
+
+        </SafeAreaView>
+
+
+</>

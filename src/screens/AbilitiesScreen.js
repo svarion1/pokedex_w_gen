@@ -4,10 +4,18 @@ import { FlatList } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Font from 'expo-font';
 
+
 const getAbilities = async () => {
     const response = await fetch("https://pokeapi.co/api/v2/ability");
     const data = await response.json();
     return data;
+};
+
+const getColor = () => {
+    const colors = ["#f19999", "#f1c999", "#f1f199", "#c9f199", "#99f199", "#99f1c9", "#99f1f1", "#99c9f1", "#9999f1", "#c999f1", "#f199f1", "#f199c9"];
+    const random = Math.floor(Math.random() * colors.length);
+    const randomColor = colors[random];
+    return randomColor;
 };
 
 
@@ -35,6 +43,9 @@ const AbilitiesScreen = ({ navigation }) => {
 
     }, []);
 
+    
+
+
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -45,7 +56,7 @@ const AbilitiesScreen = ({ navigation }) => {
                     data={abilities.results}
                     numColumns={2}
                     renderItem={({ item }) => (
-                        <TouchableOpacity style={styles.buttonAbility} onPress={() => navigation.navigate("AbilityDetail", { ability: item.name })}>
+                        <TouchableOpacity style={[styles.buttonAbility, {backgroundColor: getColor()}]} onPress={() => navigation.navigate("AbilityDetail", { ability: item.name })}>
                             <Text style={{ textTransform: "capitalize", fontSize:20, fontFamily: "Alexandria-Light" }}>{item.name}</Text>
                         </TouchableOpacity>
                     )}
@@ -78,7 +89,6 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#bbb",
         padding: 10,
         margin: 10,
         borderRadius: 10,

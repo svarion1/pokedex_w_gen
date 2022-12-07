@@ -2,22 +2,25 @@ import React from 'react'
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryGroup, VictoryPolarAxis, VictoryLabel, VictoryArea } from "victory-native";
 
 const RadarChart = ({stats}) => {
-    
+    const [pokeStats, setPokeStats] = React.useState([]);
+
     var data;
     var maxima;
 
     const getStats = () => {
-        data = stats.map((stat) => {
+        var test = stats.map((stat) => {
             return (stat.base_stat)
         })
-        return data;
+        return test;
         
     }
-const test = getStats();
 
-
+    React.useEffect(() => {
+        setPokeStats(getStats());
+    }, []);
+  
     const characterData = [
-        { SpDef: test[4], HP: test[0], Attack: test[1], Defense: test[2], Speed: test[5], SpAtk: test[3]},
+        { SpDef: 24, HP: 22, Attack:33, Defense: 67, Speed: 33, SpAtk: 33},
         
       ];
 
@@ -43,50 +46,47 @@ const test = getStats();
       }
 
       data= processData(characterData);
-     maxima = getMaxima(characterData)
+     maxima = getMaxima(characterData);
+
+     const sampleData= [
+      {
+        x: 1,
+        y: 2,
+      },
+      {
+        x: 2,
+        y: 3,
+      },
+      {
+        x: 3,
+        y: 5,
+      },
+      {
+        x: 4,
+        y: 4,
+      },
+      {
+        x: 5,
+        y: 7,
+      },
+    ];
 
   return (
     <VictoryChart polar
-        theme={VictoryTheme.material}
-        domain={{ y: [ 0, 1 ] }}
+       theme={VictoryTheme.material}
       >
-        <VictoryGroup colorScale={["gold", "orange", "tomato"]}
-          style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
-        >
-          {data.map((data, i) => {
-            return <VictoryArea key={i} data={data}/>;
-          })}
-        </VictoryGroup>
-      {
-        Object.keys(maxima).map((key, i) => {
-          return (
-            <VictoryPolarAxis key={i} dependentAxis
-              style={{
-                axisLabel: { padding: 10 },
-                axis: { stroke: "none" },
-                grid: { stroke: "grey", strokeWidth: 0.25, opacity: 0.5 }
-              }}
-              tickLabelComponent={
-                <VictoryLabel labelPlacement="vertical"/>
-              }
-              labelPlacement="perpendicular"
-              axisValue={i + 1} label={key}
-              tickFormat={(t) => Math.ceil(t * maxima[key])}
-              tickValues={[0.25, 0.5, 0.75]}
-            />
-          );
-        })
-      }
-        <VictoryPolarAxis
-          labelPlacement="parallel"
-          tickFormat={() => ""}
+        <VictoryPolarAxis dependentAxis
+          style={{ axis: { stroke: "none" } }}
+          tickFormat={() => null}
+        />
+        <VictoryPolarAxis/>
+        <VictoryArea
+          data={sampleData}
           style={{
-            axis: { stroke: "none" },
-            grid: { stroke: "grey", opacity: 0.5 }
+            data: { fill: "#c43a31" },
           }}
         />
-
-      </VictoryChart>
+    </VictoryChart>
   )
 }
 
