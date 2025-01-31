@@ -18,6 +18,6 @@ A **React Native** mobile application that serves as a robust Pokedex, allowing 
 - **[React Native](https://reactnative.dev/)**
 - **[JavaScript (ES6+)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)**
 - **[PokéAPI](https://pokeapi.co/)** – public API for Pokémon data
-- *(Optional)* **[Expo](https://expo.dev/)** for simplified development workflow
+- **[Expo](https://expo.dev/)** for simplified development workflow
 
 ---
