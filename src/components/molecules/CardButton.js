@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions } from "react-native";
 import { useState } from "react";
+
+// Get screen dimensions for responsive design
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+const isSmallScreen = SCREEN_WIDTH < 375;
+const isMediumScreen = SCREEN_WIDTH >= 375 && SCREEN_WIDTH < 414;
 
 const CardButton = ({value, onPress, text}) => {
    
@@ -16,25 +21,27 @@ const CardButton = ({value, onPress, text}) => {
 export default CardButton;
 
 const styles = StyleSheet.create({
-
     CardButton: {
-        width: "58%",
+        width: isSmallScreen ? "47%" : "48%",
         borderRadius: 20,
-        marginLeft: 5,
-        padding: 10,
-        marginBottom: 15,
+        marginHorizontal: 2,
+        padding: isSmallScreen ? 12 : isMediumScreen ? 14 : 16,
+        marginBottom: 12,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
+        minHeight: isSmallScreen ? 55 : isMediumScreen ? 65 : 70,
     },
     titleText: {
-        fontSize: 22,
-       fontFamily: "Alexandria-SemiBold",
+        fontSize: isSmallScreen ? 14 : isMediumScreen ? 16 : 18,
+        fontFamily: "Alexandria-SemiBold",
         color: "#ffffff",
+        flexShrink: 1,
+        marginRight: 8,
     },
     image: {
-        width: 40,
-        height: 40,
+        width: isSmallScreen ? 25 : isMediumScreen ? 30 : 35,
+        height: isSmallScreen ? 25 : isMediumScreen ? 30 : 35,
         opacity: 0.2,
     },
 })
