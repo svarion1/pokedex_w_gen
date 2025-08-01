@@ -7,6 +7,7 @@ import * as Font from 'expo-font';
 import header from "../assets/images/Pokeball_header.png";
 import NewsCard from "../components/organisms/NewsCard";
 import CardButton from "../components/molecules/CardButton";
+import { NEWS_API_KEY } from '@env'; // Importing the API key from .env file
 
 // Get screen dimensions for responsive design
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -16,7 +17,7 @@ const isLargeScreen = SCREEN_WIDTH >= 414;
 
 const DATE = new Date().toISOString().slice(0, 10);
 const FROM_DATE = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10); // 30 days ago
-const URL = `https://newsapi.org/v2/everything?q=pokémon&from=${FROM_DATE}&sortBy=popularity&language=en&apiKey=474ca5f822f541da8f820c55f3d1f87f`
+const URL = `https://newsapi.org/v2/everything?q=pokémon&from=${FROM_DATE}&sortBy=popularity&language=en&apiKey=${NEWS_API_KEY}`;
 
 const getNews = async () => {
     try {
